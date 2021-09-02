@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { MONGO_URI } = require('./config')
-
+const postsRoutes = require('./Routes/api/posts');
 
 const app = express();
 
@@ -10,6 +10,8 @@ const app = express();
 mongoose.connect(MONGO_URI)
     .then(() => console.log('MONGODB connected!'))
     .catch(err => console.log(err));
+
+app.use('/api/posts', postsRoutes);
 
 const PORT = process.env.PORT || 5000;
 
